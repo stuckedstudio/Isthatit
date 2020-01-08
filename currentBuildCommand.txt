@@ -1,0 +1,1 @@
+./build.o -D_REENTRANT -I/usr/include/SDL2 --end-args=-lSDL2
