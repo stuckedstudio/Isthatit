@@ -4,21 +4,45 @@
 #include <chrono>
 #include <sstream>
 #include <cstdlib>
-std::string io::readCfg()
+#include <vector>
+#include <algorithm>
+#define DEBUG 1
+std::vector<std::string> io::readCfg()
 {
-    std::ifstream cfgRead("Assets/cfg.cfg",std::ifstream::in);
+    std::ifstream cfgRead("../Assets/cfg.cfg");
+    std::vector<std::string> output = std::vector<std::string>();
+    std::string buffer;
     if(cfgRead.fail())
     {
-        return "Error";
+        Logger->log("Error in reading cfg.cfg");
+        output.push_back("Error");
+        return output;
     }
     else
     {
-        std::string result((std::istreambuf_iterator<char>(cfgRead)),
+        Logger->log("Writing config file to buffer");
+        buffer = std::string((std::istreambuf_iterator<char>(cfgRead)),
                  std::istreambuf_iterator<char>());
-        cfgRead.close();
-        return result;
     }
-    return "error";
+    cfgRead.close();
+    Logger->log("Config Read Complete : No errors to report, Thats good news !");
+    while(buffer.find('\n') != std::string::npos)
+    {
+        int index;
+        if(buffer.find('\n') != std::string::npos)
+        {
+        index = buffer.find('\n');
+        output.push_back(std::string(buffer.substr(0,buffer.find('\n'))));
+        buffer = buffer.replace(0,index,"");
+        }
+        else
+        {
+            break;
+        }
+        
+        
+    }
+    return output;
     
     
 }
@@ -38,9 +62,29 @@ void logger::log(const char* input)
     path += "/";
     path += sessionName;
     path += ".log";
-    std::ofstream logWrite(path.c_str());
+    std::ofstream logWrite(path.c_str(),std::fstream::app);
     logWrite << std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     logWrite << " ";
+    #ifdef DEBUG
+    std::cout << input << '\n';
+    #endif
+    logWrite << input << '\n';
+    logWrite.close();
+    
+}
+void logger::log(std::string input)
+{    
+    std::string path;
+    path = logDir.c_str();
+    path += "/";
+    path += sessionName;
+    path += ".log";
+    std::ofstream logWrite(path.c_str(),std::fstream::app);
+    logWrite << std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+    logWrite << " ";
+    #ifdef DEBUG
+    std::cout << input << '\n';
+    #endif
     logWrite << input << '\n';
     logWrite.close();
     
