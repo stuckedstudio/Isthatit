@@ -7,9 +7,12 @@
 #include <vector>
 #include <algorithm>
 #define DEBUG 1
-std::vector<std::string> io::readCfg()
+std::vector<std::string> io::readCfg(std::string root)
 {
-    std::ifstream cfgRead("../Assets/cfg.cfg");
+    #ifdef DEBUG
+    Logger->log("Accessing file: " + root + "/Assets/cfg.cfg");
+    #endif
+    std::ifstream cfgRead(root + "/Assets/cfg.cfg");
     std::vector<std::string> output = std::vector<std::string>();
     std::string buffer;
     if(cfgRead.fail())
@@ -33,15 +36,18 @@ std::vector<std::string> io::readCfg()
         {
         index = buffer.find('\n');
         output.push_back(std::string(buffer.substr(0,buffer.find('\n'))));
-        buffer = buffer.replace(0,index,"");
+        buffer = buffer.replace(0,index+1,"");
+        #ifdef DEBUG
+        Logger->log("Remaining buffer : " + buffer);
+        #endif
         }
         else
         {
             break;
         }
         
-        
     }
+    Logger->log("Returning config data");
     return output;
     
     

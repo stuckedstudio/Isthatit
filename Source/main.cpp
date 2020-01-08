@@ -7,11 +7,47 @@
 #include <iostream>
 #include <filesystem>
 #include <vector>
+#ifndef DEBUG
+#define DEBUG 1
+#endif
 namespace fs = std::filesystem;
 bool isRunning = false;
 bool Errored = false;
 logger* Logger;
 io* Io;
+SDL_Renderer *renderer;
+SDL_Window *window;
+SDL_Event Event;
+void Render()
+{
+    SDL_RenderClear(renderer);
+    //Add graphics here
+    SDL_SetRenderDrawColor(renderer,0,255,0,1);
+    SDL_RenderPresent(renderer);
+
+}
+void clean()
+{
+    Logger->log("Cleaning up :)");
+    SDL_Quit();
+}
+void EventHandle()
+{
+    while(SDL_PollEvent(&Event) != 0)
+    {
+        if(Event.type == SDL_WINDOWEVENT)
+        {
+            switch(Event.window.event)
+        {
+            case SDL_WINDOWEVENT_CLOSE:
+                isRunning = false;
+            break;
+            default:
+            break;
+        }
+        }
+    }
+}
 struct sysConf
 {
     int sizeX,sizeY;
@@ -25,7 +61,15 @@ struct sysConf configParse(std::vector<std::string> cfgInput)
     currConf.fullscreen = 0;
     currConf.sizeX = 0;
     currConf.sizeY = 0;
-    for(int i = 0; i <= cfgInput.size();i++)
+        #ifdef DEBUG
+        #if DEBUG == 1
+            for(int c = 0; c < cfgInput.size();c++)
+            {
+                Logger->log(std::string("cfg vector at ") + std::to_string(c) + std::string(" Contains: ") + cfgInput.at(c));
+            }
+        #endif
+        #endif
+    for(int i = 0; i < cfgInput.size();i++)
     {
         if(cfgInput.at(i) == std::string("Error"))
         {
@@ -36,15 +80,15 @@ struct sysConf configParse(std::vector<std::string> cfgInput)
         {
             if(cfgInput.at(i).find("width=") != np)
             {
-                currConf.sizeX = std::stoi(cfgInput.at(i).substr(cfgInput.at(i).find_first_of('"'),cfgInput.at(i).size()-cfgInput.at(i).find_first_of('"')-1));
+                currConf.sizeX = std::stoi(cfgInput.at(i).substr(cfgInput.at(i).find_first_of('"')+1,cfgInput.at(i).size()-cfgInput.at(i).find_first_of('"')-1));
             }
             else if(cfgInput.at(i).find("height=") != np)
             {
-                currConf.sizeY = std::stoi(cfgInput.at(i).substr(cfgInput.at(i).find_first_of('"'),cfgInput.at(i).size()-cfgInput.at(i).find_first_of('"')-1));
+                currConf.sizeY = std::stoi(cfgInput.at(i).substr(cfgInput.at(i).find_first_of('"')+1,cfgInput.at(i).size()-cfgInput.at(i).find_first_of('"')-1));
             }
             else if(cfgInput.at(i).find("fullscreen=") != np)
             {
-                currConf.fullscreen = std::stoi(cfgInput.at(i).substr(cfgInput.at(i).find_first_of('"'),cfgInput.at(i).size()-cfgInput.at(i).find_first_of('"')-1));
+                currConf.fullscreen = std::stoi(cfgInput.at(i).substr(cfgInput.at(i).find_first_of('"')+1,cfgInput.at(i).size()-cfgInput.at(i).find_first_of('"')-1));
             }
             else
             {
@@ -84,7 +128,7 @@ int main()
     }
     Logger->log("Starting init... So far so good :)");
     Logger->log("Reading config...");
-    currentSysConfig = configParse(Io->readCfg());
+    currentSysConfig = configParse(Io->readCfg(gameRoot));
     if(Errored)
     {
         Logger->log("Config Could not be read... Not recoverable - Dying");
@@ -93,7 +137,7 @@ int main()
     else
     {
         Logger->log("Config read - No errors to report");
-        Logger->log("Current config is: "+currentSysConfig.sizeY+'\n'+currentSysConfig.sizeX+'\n'+currentSysConfig.fullscreen+'\n');
+        Logger->log("Current config is: "+std::to_string(currentSysConfig.sizeY)+"px"+'\n'+std::to_string(currentSysConfig.sizeX)+"px"+'\n'+"fullscreen:"+std::to_string(currentSysConfig.fullscreen)+'\n');
     }
     
     Uint32 flags;
@@ -115,9 +159,6 @@ int main()
         Logger->log("SDL error - INIT_EVERYTHING failed... SDL ERROR : " + std::string(SDL_GetError()));
         return 33; 
     }
-
-    SDL_Renderer *renderer;
-    SDL_Window *window;
     if(SDL_CreateWindowAndRenderer(
         currentSysConfig.sizeX,
         currentSysConfig.sizeY,
@@ -129,6 +170,17 @@ int main()
             Logger->log("SDL error - Window or Renderer could not be created... SDL ERROR : " + std::string(SDL_GetError()));
             return 33;
         }
-
+        else
+        {
+            //We can now let the main loop run :)
+            isRunning = true;
+        }
+        while(isRunning)
+        {
+            Render();
+            EventHandle();
+        }
+        clean();
+        
     return 0;
 }
