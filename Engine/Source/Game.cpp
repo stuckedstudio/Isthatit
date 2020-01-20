@@ -1,9 +1,11 @@
+
+
 #include "../Includes/Game.h"
 #include "../Includes/TextureManager.h"
 #include "../Includes/GameObject.h"
 
 
-
+SDL_Renderer* Game::renderer = nullptr;
 
 Game::Game()
 {}
