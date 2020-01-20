@@ -1,0 +1,23 @@
+1578502265 logs dir exists
+1578502265 Root defined as /home/anzo/Storage/Drive2/Projects/SDLProject/Bin
+1578502265 Starting init... So far so good :)
+1578502265 Reading config...
+1578502265 Accessing file: /home/anzo/Storage/Drive2/Projects/SDLProject/Bin/Assets/cfg.cfg
+1578502265 Writing config file to buffer
+1578502265 Config Read Complete : No errors to report, Thats good news !
+1578502265 Remaining buffer : width="1920"
+fullscreen="0"
+
+1578502265 Remaining buffer : fullscreen="0"
+
+1578502265 Remaining buffer : 
+1578502265 Returning config data
+1578502265 cfg vector at 0 Contains: height="720"
+1578502265 cfg vector at 1 Contains: width="1920"
+1578502265 cfg vector at 2 Contains: fullscreen="0"
+1578502265 Config read - No errors to report
+1578502265 Current config is: 720px
+1920px
+fullscreen:0
+
+1578502270 Cleaning up :)
