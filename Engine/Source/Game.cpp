@@ -6,6 +6,7 @@
 #include "../Includes/Map.h"
 
 SDL_Renderer* Game::renderer = nullptr;
+SDL_Window* Game::window = nullptr;
 Map* map;
 
 Game::Game()

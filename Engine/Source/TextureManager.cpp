@@ -16,9 +16,16 @@ std::vector<SDL_Texture*> TextureManager::GetMapableTextures()
     std::vector<SDL_Texture*> texList;
     std::string path = std::string(dirRoot) + "/Assets/Tiles";
     std::cout << path << std::endl;
+    try{
     for(const auto & entry : fs::directory_iterator(path))
     {
         texList.push_back(TextureManager::LoadTexture(entry.path().generic_string().c_str()));
+    }
+    }
+    catch(fs::filesystem_error::exception)
+    {
+        SDL_ShowSimpleMessageBox(NULL,"Error Reading Data","Tile assets could not be read - Please reinstall program or contact the developer",Game::window);
+        
     }
     return texList;
 }
