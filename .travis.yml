@@ -8,9 +8,11 @@ addons:
     packages:
       - g++-9
       - clang-9
+      - gcc-9
 compiler: 
   - g++
   - clang
+  - gcc
 env:
   - "CC=gcc-9 CXX=g++-9"
 script: ./currentBuildCommand.sh
