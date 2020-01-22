@@ -18,8 +18,8 @@ before_script:
       cd ..
       travis_retry git clone --recursive https://github.com/stuckedstudio/quick-cpp-builder.git
       cd quick-cpp-builder
-      chmod +x setup.sh
-      ./setup.sh
+      if [ \"$CXX\" = \"clang++\" ]; then clang++ -std=c++17 projectBuilder.cpp - o build.o; fi
+      if [ \"$CXX\" = \"g++\" ]; then g++ -std=c++17 projectBuilder.cpp - o build.o; fi
       cd ..
       cp quick-cpp-builder/build.o build.o
       chmod +x currentBuildCommand.sh
