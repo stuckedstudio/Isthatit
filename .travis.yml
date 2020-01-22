@@ -2,13 +2,13 @@
 addons: 
   apt: 
     packages: 
-      - g++-9
-      - clang-9
+      - g++-8
+      - clang-8
     sources: 
       - ubuntu-toolchain-r-test
 before_script: 
-  - "if [ \"$CXX\" = \"g++\" ]; then export CXX=\"g++-9\" CC=\"gcc-9\"; fi"
-  - "if [ \"$CXX\" = \"clang++\" ]; then export CXX=\"clang++-9\" CC=\"clang-9\"; fi"
+  - "if [ \"$CXX\" = \"g++\" ]; then export CXX=\"g++-8\" CC=\"gcc-8\"; fi"
+  - "if [ \"$CXX\" = \"clang++\" ]; then export CXX=\"clang++-8\" CC=\"clang-8\"; fi"
   - |
       travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.10.tar.gz | tar xz
       cd SDL2-2.0.10
@@ -29,7 +29,7 @@ compiler:
   - gcc
 dist: bionic
 env: 
-  - "CC=gcc-9 CXX=g++-9"
+  - "CC=gcc-8 CXX=g++-8"
 language: cpp
 os: linux
 script: ./currentBuildCommand.sh
