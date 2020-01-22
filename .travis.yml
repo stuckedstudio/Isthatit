@@ -5,6 +5,8 @@ addons:
       - g++-8
       - clang-8
       - libgcc-8-dev
+      - llvm-8-dev
+      - libomp-8-dev
     sources: 
       - ubuntu-toolchain-r-test
 before_script: 
