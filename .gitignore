@@ -1,3 +1,6 @@
 *.o
 *.log
-.vscode/*
+.vscode/*s
+Assets/*/*.png
+Assets/*/*.jpg
+Assets/*/*.bmp
