@@ -12,7 +12,7 @@ compiler:
   - g++
   - clang
 env:
-  - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
+  - export "CC=gcc-9" && "CXX=g++-9"
 script: ./currentBuildCommand.sh
 before_install:
 # Download, make and install SDL2-2.0.8 (stable)
