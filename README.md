@@ -1,4 +1,6 @@
 # Is That It?
+![buildstatus](https://travis-ci.org/stuckedstudio/Isthatit.svg?branch=master)
+
 A small, first try, game utilizing SDL, developed on Linux
 
 ### What even is this...
