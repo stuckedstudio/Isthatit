@@ -42,3 +42,5 @@ env:
 language: cpp
 os: linux
 script: ./currentBuildCommand.sh
+notifications:
+  email: false
