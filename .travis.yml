@@ -35,7 +35,6 @@ before_script:
 compiler: 
   - g++
   - clang
-  - gcc
 dist: bionic
 env: 
   - "CC=gcc-8 CXX=g++-8"
