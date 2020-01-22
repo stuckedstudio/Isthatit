@@ -3,7 +3,7 @@ compiler:
   - clang
   - gcc
 dist: bionic
-script:
+script: ./currentBuildCommand.sh
 
 before_install:
 # Download, make and install SDL2-2.0.8 (stable)
@@ -21,4 +21,3 @@ before_install:
   cd ..
   cp quick-cpp-builder-master/build.o build.o
   chmod +x currentBuildCommand.sh
-  ./currentBuildCommand.sh
