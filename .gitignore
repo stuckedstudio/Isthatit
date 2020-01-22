@@ -1,6 +1,7 @@
 *.o
 *.log
-.vscode/*s
+.vscode/*
+#These are to be removed
 Assets/*/*.png
 Assets/*/*.jpg
 Assets/*/*.bmp
