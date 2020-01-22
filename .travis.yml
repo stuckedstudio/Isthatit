@@ -8,7 +8,6 @@ addons:
     packages:
       - g++-9
       - clang-9
-      - gcc-9
 compiler: 
   - g++
   - clang
@@ -32,3 +31,6 @@ before_install:
   cd ..
   cp quick-cpp-builder/build.o build.o
   chmod +x currentBuildCommand.sh
+install:
+if [ "$CXX" = "g++" ]; then export CXX="g++-9" CC="gcc-9"; fi
+if [ "$CXX" = "clang++" ]; then export CXX="clang++-9" CC="clang-9"; fi
