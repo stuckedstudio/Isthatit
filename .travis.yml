@@ -23,8 +23,8 @@ before_script:
       ls
   - |
       echo \"$CXX\"
-      if [ \"$CXX\" = \"clang++-8\" ]; then clang++ -std=c++2a -lstdc++fs projectBuilder.cpp -o build.o; fi
-      if [ \"$CXX\" = \"g++-8\" ]; then g++ -std=c++2a projectBuilder.cpp -o build.o; fi
+      if [ \"$CXX\" = \"clang++-8\" ]; then clang++ -lstdc++fs projectBuilder.cpp -o build.o -std=c++2a; fi
+      if [ \"$CXX\" = \"g++-8\" ]; then g++ projectBuilder.cpp -o build.o -std=c++2a; fi
   - |
       ls
       cd ..
