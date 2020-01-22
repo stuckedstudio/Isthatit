@@ -4,7 +4,8 @@ compiler:
   - gcc
 dist: bionic
 script: ./currentBuildCommand.sh
-addons:
+- os: linux
+  addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
