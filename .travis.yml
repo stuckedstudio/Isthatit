@@ -1,36 +1,36 @@
-os: linux
-dist: bionic
-language: cpp
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
+--- 
+addons: 
+  apt: 
+    packages: 
       - g++-9
       - clang-9
+    sources: 
+      - ubuntu-toolchain-r-test
+before_install: 
+  - |
+      travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.10.tar.gz | tar xz
+      cd SDL2-2.0.10
+      ./configure
+      make
+      sudo make install
+      cd ..
+      travis_retry git clone --recursive https://github.com/stuckedstudio/quick-cpp-builder.git
+      cd quick-cpp-builder
+      chmod +x setup.sh
+      ./setup.sh
+      cd ..
+      cp quick-cpp-builder/build.o build.o
+      chmod +x currentBuildCommand.sh
 compiler: 
   - g++
   - clang
   - gcc
-env:
+dist: bionic
+env: 
   - "CC=gcc-9 CXX=g++-9"
+install: 
+  - "if [ \"$CXX\" = \"g++\" ]; then export CXX=\"g++-9\" CC=\"gcc-9\"; fi"
+  - "if [ \"$CXX\" = \"clang++\" ]; then export CXX=\"clang++-9\" CC=\"clang-9\"; fi"
+language: cpp
+os: linux
 script: ./currentBuildCommand.sh
-before_install:
-# Download, make and install SDL2-2.0.10 (stable)
-- |
-  travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.10.tar.gz | tar xz
-  cd SDL2-2.0.10
-  ./configure
-  make
-  sudo make install
-  cd ..
-  travis_retry git clone --recursive https://github.com/stuckedstudio/quick-cpp-builder.git
-  cd quick-cpp-builder
-  chmod +x setup.sh
-  ./setup.sh
-  cd ..
-  cp quick-cpp-builder/build.o build.o
-  chmod +x currentBuildCommand.sh
-install:
-if [ "$CXX" = "g++" ]; then export CXX="g++-9" CC="gcc-9"; fi
-if [ "$CXX" = "clang++" ]; then export CXX="clang++-9" CC="clang-9"; fi
