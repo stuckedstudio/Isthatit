@@ -22,6 +22,7 @@ before_script:
       cd quick-cpp-builder
       ls
   - |
+      echo \"$CXX\"
       if [ \"$CXX\" = \"clang++\" ]; then clang++ -std=c++17 projectBuilder.cpp - o build.o; fi
       if [ \"$CXX\" = \"g++\" ]; then g++ -std=c++17 projectBuilder.cpp - o build.o; fi
   - |
