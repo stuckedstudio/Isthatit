@@ -6,7 +6,9 @@ addons:
       - clang-9
     sources: 
       - ubuntu-toolchain-r-test
-before_install: 
+before_script: 
+  - "if [ \"$CXX\" = \"g++\" ]; then export CXX=\"g++-9\" CC=\"gcc-9\"; fi"
+  - "if [ \"$CXX\" = \"clang++\" ]; then export CXX=\"clang++-9\" CC=\"clang-9\"; fi"
   - |
       travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.10.tar.gz | tar xz
       cd SDL2-2.0.10
@@ -28,9 +30,6 @@ compiler:
 dist: bionic
 env: 
   - "CC=gcc-9 CXX=g++-9"
-install: 
-  - "if [ \"$CXX\" = \"g++\" ]; then export CXX=\"g++-9\" CC=\"gcc-9\"; fi"
-  - "if [ \"$CXX\" = \"clang++\" ]; then export CXX=\"clang++-9\" CC=\"clang-9\"; fi"
 language: cpp
 os: linux
 script: ./currentBuildCommand.sh
