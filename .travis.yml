@@ -29,4 +29,3 @@ before_install:
   cd ..
   cp quick-cpp-builder/build.o build.o
   chmod +x currentBuildCommand.sh
-  
