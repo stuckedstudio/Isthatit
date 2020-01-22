@@ -11,6 +11,6 @@ A small, first try, game utilizing SDL, developed on Linux
 
 ### Building the program
 
-- It's only been tested on Ubuntu 19.04 and only been tested using the [Quick Cpp Builder](https://github.com/stuckedstudio/quick-cpp-builder) So for higher chance of success I'd recommend using that tool or just g++ with the args specified in the [currentBuildCommand.txt](https://github.com/stuckedstudio/Isthatit/blob/master/currentBuildCommand.txt) file
+- It's only been tested on Ubuntu 19.04 and only been tested using the [Quick Cpp Builder](https://github.com/stuckedstudio/quick-cpp-builder) So for higher chance of success I'd recommend using that tool or just g++ with the args specified in the [currentBuildCommand.sh](https://github.com/stuckedstudio/Isthatit/blob/master/currentBuildCommand.sh) file
 
 ### Thanks for reading
