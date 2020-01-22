@@ -4,10 +4,18 @@ compiler:
   - gcc
 dist: bionic
 script: ./currentBuildCommand.sh
-
+addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-9
+      env:
+        - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
 before_install:
 # Download, make and install SDL2-2.0.8 (stable)
 - |
+  eval "${MATRIX_EVAL}"
   travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.8.tar.gz | tar xz
   cd SDL2-2.0.8
   ./configure
