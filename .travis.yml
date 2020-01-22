@@ -14,12 +14,11 @@ before_install:
   make
   sudo make install
   cd ..
-  travis_retry curl -L https://github.com/stuckedstudio/quick-cpp-builder/archive/master.zip | unzip -o master.zip
-  cd master/quick-cpp-builder-master
+  travis_retry git clone --recursive https://github.com/stuckedstudio/quick-cpp-builder.git
+  cd quick-cpp-builder-master
   chmod +x setup.sh
   ./setup.sh
   cd ..
-  cd ..
-  cp master/quick-cpp-builder-master/build.o build.o
+  cp quick-cpp-builder-master/build.o build.o
   chmod +x currentBuildCommand.sh
   ./currentBuildCommand.sh
