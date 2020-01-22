@@ -38,8 +38,6 @@ compiler:
   - g++
   - clang
 dist: bionic
-env: 
-  - "CC=gcc-8 CXX=g++-8"
 language: cpp
 os: linux
 script: ./currentBuildCommand.sh
