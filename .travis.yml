@@ -15,7 +15,7 @@ before_install:
   sudo make install
   cd ..
   travis_retry git clone --recursive https://github.com/stuckedstudio/quick-cpp-builder.git
-  cd quick-cpp-builder-master
+  cd quick-cpp-builder
   chmod +x setup.sh
   ./setup.sh
   cd ..
