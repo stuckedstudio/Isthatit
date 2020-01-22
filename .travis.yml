@@ -12,13 +12,12 @@ compiler:
   - g++
   - clang
 env:
-  - "CC=gcc-9" 
-  - "CXX=g++-9"
+  - "CC=gcc-9 && CXX=g++-9"
 script: ./currentBuildCommand.sh
 before_install:
-# Download, make and install SDL2-2.0.8 (stable)
+# Download, make and install SDL2-2.0.10 (stable)
 - |
-  travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.8.tar.gz | tar xz
+  travis_retry curl -L https://www.libsdl.org/release/SDL2-2.0.10.tar.gz | tar xz
   cd SDL2-2.0.8
   ./configure
   make
