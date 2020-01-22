@@ -5,3 +5,4 @@
 Assets/*/*.png
 Assets/*/*.jpg
 Assets/*/*.bmp
+#TODO: Make exceptions for real Assets
