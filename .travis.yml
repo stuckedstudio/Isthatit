@@ -26,7 +26,7 @@ before_script:
       ls
   - |
       echo \"$CXX\"
-      if [ \"$CXX\" = \"clang++-8\" ]; then clang++ -std=c++17 -stdlib=libc++ projectBuilder.cpp -o build.o -lc++abi ;fi
+      if [ \"$CXX\" = \"clang++-8\" ]; then clang++ -std=c++17 projectBuilder.cpp -o build.o -lc++abi -lstdc++fs ;fi
       if [ \"$CXX\" = \"g++-8\" ]; then g++ -std=c++17 projectBuilder.cpp -o build.o ;fi
   - |
       ls
