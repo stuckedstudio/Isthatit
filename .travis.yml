@@ -19,5 +19,5 @@ before_install:
   chmod +x setup.sh
   ./setup.sh
   cd ..
-  cp quick-cpp-builder-master/build.o build.o
+  cp quick-cpp-builder/build.o build.o
   chmod +x currentBuildCommand.sh
