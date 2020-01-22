@@ -1,9 +1,3 @@
-language: cpp
-compiler:
-  - clang
-  - gcc
-dist: bionic
-script: ./currentBuildCommand.sh
 - os: linux
   addons:
         apt:
@@ -13,6 +7,12 @@ script: ./currentBuildCommand.sh
             - g++-9
       env:
         - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
+language: cpp
+compiler:
+  - clang
+  - gcc
+dist: bionic
+script: ./currentBuildCommand.sh
 before_install:
 # Download, make and install SDL2-2.0.8 (stable)
 - |
