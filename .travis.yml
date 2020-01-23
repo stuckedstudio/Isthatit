@@ -7,6 +7,7 @@ addons:
       - libgcc-8-dev
       - llvm-8-dev
       - libomp-8-dev
+      - libc++abi-dev
     sources: 
       - ubuntu-toolchain-r-test
 before_script: 
