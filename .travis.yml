@@ -20,7 +20,14 @@ before_script:
       make
       sudo make install
       cd ..
-  - | 
+  - |
+      travis_retry curl -L https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.5.tar.gz | tar xz
+      cd SDL2_Image-2.0.5
+      ./configure
+      make
+      sudo make install
+      cd ..
+  - |
       ls
       travis_retry git clone --recursive https://github.com/stuckedstudio/quick-cpp-builder.git
       cd quick-cpp-builder
