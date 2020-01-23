@@ -32,7 +32,7 @@ before_script:
       travis_retry git clone --recursive https://github.com/stuckedstudio/quick-cpp-builder.git
       cd quick-cpp-builder
   - |
-      echo \"$CXX\"
+      echo \"currently using $CXX\"
       if [ \"$CXX\" = \"clang++-8\" ]; then clang++ -std=c++17 projectBuilder.cpp -o build.o -lc++abi -lstdc++fs ;fi
       if [ \"$CXX\" = \"g++-8\" ]; then g++ -std=c++17 projectBuilder.cpp -o build.o ;fi
   - |
