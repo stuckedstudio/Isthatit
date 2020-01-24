@@ -10,7 +10,7 @@ class Map
         ~Map();
 
         void LoadMap(int mapArr[20][25]);
-
+        int LoadMapFromFile(const char* filePath);
         void DrawMap();
     
     private:
