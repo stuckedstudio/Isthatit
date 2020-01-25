@@ -1,6 +1,7 @@
 #include "../Includes/Map.h"
 #include "../Includes/TextureManager.h"
-
+#include <iostream>
+#include <fstream>
 
 
 
@@ -27,6 +28,23 @@ void Map::LoadMap(int mapArr[20][25])
         }
     }
 
+}
+int Map::LoadMapFromFile(const char* file)
+{
+    std::ifstream mapfile (file,std::ios::in);
+    if(mapfile.is_open())
+    {
+        std::string message = std::string("Not implmented error - trying to read map: ") + file;  
+        SDL_ShowSimpleMessageBox(NULL,"Map read error",message.c_str(),Game::window);
+        return 1;
+    }
+    else
+    {
+        std::string message = std::string("Could not read map at file: ") + file;  
+        SDL_ShowSimpleMessageBox(NULL,"Map read error",message.c_str(),Game::window);
+        return 1;
+    }
+    
 }
 void Map::DrawMap()
 {
