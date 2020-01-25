@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
 	{
 		std::string error = "SDL error getting displaymode" + std::string(SDL_GetError());
 		SDL_Log(error.c_str());
+		FPS = 60;
 	}
 	else
 	{
