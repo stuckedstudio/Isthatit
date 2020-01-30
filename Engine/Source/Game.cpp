@@ -4,7 +4,7 @@
 #include "../Includes/TextureManager.h"
 #include "../Includes/GameObject.h"
 #include "../Includes/Map.h"
-
+#include "../Includes/ECS.h"
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Window* Game::window = nullptr;
 Map* map;
