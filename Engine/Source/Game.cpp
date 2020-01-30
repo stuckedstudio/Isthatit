@@ -1,13 +1,16 @@
-
-
 #include "../Includes/Game.h"
 #include "../Includes/TextureManager.h"
 #include "../Includes/GameObject.h"
 #include "../Includes/Map.h"
 #include "../Includes/ECS.h"
+#include "../Includes/Components.h"
+
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Window* Game::window = nullptr;
 Map* map;
+
+
+Manager manager;
 
 Game::Game()
 {}
