@@ -9,3 +9,4 @@ chmod +x setup.sh
 ./setup.sh
 cd $path
 cp ../quick-cpp-builder/build.o build.o
+echo "build.o moved to project folder :)"
