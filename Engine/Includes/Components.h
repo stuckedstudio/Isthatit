@@ -20,7 +20,11 @@ class PositionComponent : public Component
         }
         void update() override
         {
-            //We add update logic for this component here
+
+        }
+        void draw() override
+        {
+            
         }
         void setPos(int newX, int newY)
         {
